@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Concurso PyR</string>
+    <string name="isNewUser">is_new_user</string>
+    <string name="registrar">Registrar</string>
+    <string name="nameUser">nameUser</string>
+    <string name="passwordUser">passwordUser</string>
+</resources>

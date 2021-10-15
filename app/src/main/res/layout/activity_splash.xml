@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity"
+    android:orientation="vertical"
+    android:background="#008081"
+    android:paddingHorizontal="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_inicial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Concurso de preguntas y respuestas"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:background="@color/black"
+        />
+    <ImageView
+        android:id="@+id/iv_inicial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/questions"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_comenzar"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Comenzar"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/ic_comenzar"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_configurar"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Configurar"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/ic_configurar"
+        />
+
+        <TextView
+            android:id="@+id/tv_saludo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido Juan Pablo"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_validarContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_validarContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="numberPassword"
+                android:gravity="center"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_continuarConfiguracion"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Continuar"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/black"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:drawableRight="@drawable/ic_continuar_configuracion"
+            />
+
+        <TextView
+            android:id="@+id/tv_registroAdministrador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/black"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="Registro de administrador"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_contrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:hint="Contraseña" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_confirmarContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_confirmarContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:hint="Repetir contraseña" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_opciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_opcion1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cargar preguntas por defecto"
+                android:layout_gravity="center"
+                android:layout_marginEnd="3dp"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rg_opcion2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Configurar preguntas"
+                android:layout_gravity="center"
+                android:layout_marginStart="3dp"
+                />
+
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_guardar"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/black"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:drawableRight="@drawable/ic_guardar"
+            android:layout_marginVertical="16dp"
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>
