@@ -76,7 +76,8 @@
             android:id="@+id/til_validarContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp">
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_validarContrasena"
@@ -159,7 +160,7 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rb_opcion1"
+                android:id="@+id/rb_opcionCargarPorDefecto"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Cargar preguntas por defecto"
@@ -168,7 +169,7 @@
                 android:checked="true"/>
 
             <RadioButton
-                android:id="@+id/rg_opcion2"
+                android:id="@+id/rg_opcionCargarPreguntas"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Configurar preguntas"

@@ -4,15 +4,239 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#008081"
+    android:paddingHorizontal="10dp">
+
+    <ImageView
+        android:id="@+id/iv_preguntaUno"
+        android:layout_width="350dp"
+        android:layout_height="262.5dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/borde_blanco"
+        android:paddingVertical="3dp"
+        />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_preguntaUno"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Espacio para la pregunta"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/tv_respuestaUno"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#008081"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="Espacio para la respuesta 1"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_respuestaDos"
+        app:layout_constraintEnd_toEndOf="@id/iv_respuestaUno"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/iv_respuestaUno"
+        app:layout_constraintTop_toTopOf="@id/tv_respuestaDos"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/iv_respuestaUno"
+        android:layout_width="150dp"
+        android:layout_height="112.5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_respuestaDos"
+        app:layout_constraintTop_toBottomOf="@id/tv_respuestaUno"
+        android:src="@mipmap/ic_launcher_round"
+        android:background="@drawable/borde_blanco"
+        android:layout_marginBottom="3dp"
+        android:paddingVertical="3dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_respuestaDos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/iv_respuestaDos"
+        app:layout_constraintEnd_toEndOf="@id/iv_respuestaDos"
+        app:layout_constraintTop_toBottomOf="@id/iv_preguntaUno"
+        android:text="Espacio para la respuesta 2"
+        android:textSize="12dp"
+        android:padding="3dp"
+        android:layout_marginTop="8dp"
+        android:background="#008081"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+
+
+    <ImageView
+        android:id="@+id/iv_respuestaDos"
+        android:layout_width="150dp"
+        android:layout_height="112.5dp"
+        app:layout_constraintStart_toEndOf="@id/iv_respuestaUno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_respuestaDos"
+        android:src="@mipmap/ic_launcher_round"
+        android:background="@drawable/borde_blanco"
+        android:layout_marginHorizontal="3dp"
+        android:layout_marginBottom="3dp"
+        android:paddingVertical="3dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_respuestaTres"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/iv_respuestaUno"
+        app:layout_constraintEnd_toEndOf="@id/iv_respuestaUno"
+        app:layout_constraintTop_toBottomOf="@id/iv_respuestaUno"
+        android:text="Espacio para la respuesta 3"
+        android:textSize="12dp"
+        android:padding="3dp"
+        android:layout_marginTop="8dp"
+        android:background="#008081"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+    <ImageView
+        android:id="@+id/iv_respuestaTres"
+        android:layout_width="150dp"
+        android:layout_height="112.5dp"
+        app:layout_constraintStart_toStartOf="@id/iv_respuestaUno"
+        app:layout_constraintEnd_toEndOf="@id/iv_respuestaUno"
+        app:layout_constraintTop_toBottomOf="@id/tv_respuestaCuatro"
+        android:src="@mipmap/ic_launcher_round"
+        android:background="@drawable/borde_blanco"
+        android:layout_marginBottom="3dp"
+        android:paddingVertical="3dp"
+        />
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/tv_respuestaCuatro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/iv_respuestaDos"
+        app:layout_constraintEnd_toEndOf="@id/iv_respuestaDos"
+        app:layout_constraintTop_toBottomOf="@id/iv_respuestaDos"
+        android:text="Espacio para la respuesta 4"
+        android:textSize="12dp"
+        android:padding="3dp"
+        android:layout_marginTop="8dp"
+        android:background="#008081"
+        android:gravity="center"
+        android:textColor="@color/black"
+        />
+    <ImageView
+        android:id="@+id/iv_respuestaCuatro"
+        android:layout_width="150dp"
+        android:layout_height="112.5dp"
+        app:layout_constraintStart_toEndOf="@id/iv_respuestaUno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_respuestaCuatro"
+        android:src="@mipmap/ic_launcher_round"
+        android:background="@drawable/borde_blanco"
+        android:layout_marginHorizontal="3dp"
+        android:layout_marginBottom="3dp"
+        android:paddingVertical="3dp"
+        />
+
+    <ImageView
+        android:id="@+id/iv_trofeo"
+        android:layout_width="250dp"
+        android:layout_height="187.5dp"
+        android:src="@drawable/trofeo"
+        android:layout_margin="8dp"
+      app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_respuestaTres"
+        />
+    <TextView
+        android:id="@+id/tv_felicitacionGanador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hay un nuevo campeón"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_trofeo"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_nombreCampeon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_felicitacionGanador"
+        android:background="@drawable/borde_blanco">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nombreCampeon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:gravity="center"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_documentoCampeon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_nombreCampeon"
+        android:background="@drawable/borde_blanco">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_documentoCampeon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Documento"
+            android:inputType="number"
+            android:gravity="center"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_continuarSalonDeGanadores"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Sala de ganadores"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/ic_continuar_configuracion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_documentoCampeon"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
