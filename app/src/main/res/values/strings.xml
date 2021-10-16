@@ -6,4 +6,7 @@
     <string name="passwordUser">passwordUser</string>
     <string name="actualizar">Actualizar</string>
     <string name="nivel">nivel</string>
+    <string name="contador">contador</string>
+    <dimen name="margin_min">4dp</dimen>
+    <dimen name="iv_card">100dp</dimen>
 </resources>

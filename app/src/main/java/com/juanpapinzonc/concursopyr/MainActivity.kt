@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.juanpapinzonc.concursopyr.databinding.ActivityConfigurarBinding
 import com.juanpapinzonc.concursopyr.databinding.ActivityMainBinding
+import java.sql.Types
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,10 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         val preferences = getPreferences(Context.MODE_PRIVATE)
         val nivel = preferences.getInt(getString(R.string.nivel), 1)
+        var contador = preferences.getInt((getString(R.string.contador)),1)
 
         val preguntaDAO = ConcursoPyR.database.PreguntasDAO()
         var opcSeleccionada = ""
         var valorAleatorio = valorRandom(1..6)
+
+        var GanadorDAO = ConcursoPyR.database2.GanadoresDAO()
 
         binding.ivTrofeo.visibility = View.GONE
         binding.tvFelicitacionGanador.visibility = View.GONE
@@ -71,8 +76,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btContinuarSalonDeGanadores.setOnClickListener {
-            startActivity(Intent(this, SalonGanadoresActivity::class.java))
-            finish()
+            if(binding.etNombreCampeon.text.isNullOrEmpty()){
+                Toast.makeText(this, "Ingrese un nombre", Toast.LENGTH_SHORT).show()
+            }else{
+                if(binding.etNombreCampeon.text.isNullOrEmpty()){
+                    Toast.makeText(this, "Ingrese un documento", Toast.LENGTH_SHORT).show()
+                }else{
+                    val ganadorBuscar =GanadorDAO.buscarGanadores(binding.etDocumentoCampeon.text.toString())
+
+                    if(ganadorBuscar == null){
+                        val ganador = Ganadores(
+                            Types.NULL,
+                            binding.etNombreCampeon.text.toString(),
+                            binding.etDocumentoCampeon.text.toString(),
+                            "50000",
+                            true,
+                            contador
+                        )
+                        preferences.edit().putInt(getString(R.string.contador), contador + 1).apply()
+                        GanadorDAO.crearGanadores(ganador)
+                    }else{
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle("El documento ya existe")
+                            .setNegativeButton("Cancelar", null)
+                            .setPositiveButton(R.string.actualizar, { dialogInterface, i ->
+                                Toast.makeText(this, "En construcción", Toast.LENGTH_SHORT).show()
+                            }).show()
+                    }
+                    startActivity(Intent(this, SalonGanadoresActivity::class.java))
+                    finish()
+                    }
+            }
+
+
+
         }
 
         val pregunta = preguntaDAO.buscarPreguntas(valorAleatorio.toString())
