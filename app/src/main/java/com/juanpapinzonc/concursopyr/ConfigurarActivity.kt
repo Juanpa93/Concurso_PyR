@@ -82,17 +82,28 @@ class ConfigurarActivity : AppCompatActivity() {
             val opcPregunta = encontrarPreguntaSeleccionada()
             val preguntaBuscar = preguntasDAO.buscarPreguntas(opcPregunta)
             if(preguntaBuscar!= null){
-                binding2.etPreguntaUno.setText(preguntaBuscar.pregunta)
-                binding2.etRespuestaUno.setText(preguntaBuscar.opcionUno)
-                binding2.etRespuestaDos.setText(preguntaBuscar.opcionDos)
-                binding2.etRespuestaTres.setText(preguntaBuscar.opcionTres)
-                binding2.etRespuestaCuatro.setText(preguntaBuscar.opcionCuatro)
-                Toast.makeText(this, "La pregunta $opcPregunta ahora esta visible", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, "La pregunta $opcPregunta no se ha creado aún", Toast.LENGTH_SHORT).show()
+                if(opcPregunta !="0"){
+                    binding2.etPreguntaUno.setText(preguntaBuscar.pregunta)
+                    binding2.etRespuestaUno.setText(preguntaBuscar.opcionUno)
+                    binding2.etRespuestaDos.setText(preguntaBuscar.opcionDos)
+                    binding2.etRespuestaTres.setText(preguntaBuscar.opcionTres)
+                    binding2.etRespuestaCuatro.setText(preguntaBuscar.opcionCuatro)
+                    when(preguntaBuscar.opcionCorrecta){
+                        "1" -> binding2.rbRUno.isChecked = true
+                        "2" -> binding2.rbRDos.isChecked = true
+                        "3" -> binding2.rbRTres.isChecked = true
+                        "4" -> binding2.rbRCuatro.isChecked = true
+                    }
+                    Toast.makeText(this, "La pregunta $opcPregunta ahora esta visible", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this, "La pregunta $opcPregunta no se ha creado aún", Toast.LENGTH_SHORT).show()
+                }
+                limpiarRadiobuttons()
+            } else{
+                Toast.makeText(this, "Seleccione una pregunta", Toast.LENGTH_SHORT).show()
             }
-            limpiarRadiobuttons()
-        }
+                }
+
 
 
         binding2.rbPregunta1.setOnClickListener {
