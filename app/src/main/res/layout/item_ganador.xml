@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:background="@drawable/borde_blanco">
+
+    <ImageView
+        android:id="@+id/iv_trofeo"
+        android:layout_width="@dimen/iv_card"
+        android:layout_height="@dimen/iv_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/margin_min"
+        android:src="@mipmap/ic_launcher"
+        android:background="?attr/selectableItemBackground"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_nombreGanador"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pepito Perez"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/iv_trofeo"
+       app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iv_trofeo"
+        app:layout_constraintBottom_toTopOf="@+id/tv_documentoGanador"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tv_documentoGanador"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="1056779007"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_nombreGanador"
+        app:layout_constraintEnd_toStartOf="@id/iv_trofeo"
+        app:layout_constraintBottom_toBottomOf="@id/tv_premioGanador"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/tv_premioGanador"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="50000 COP"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_documentoGanador"
+        app:layout_constraintEnd_toStartOf="@id/iv_trofeo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

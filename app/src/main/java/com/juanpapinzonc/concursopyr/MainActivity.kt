@@ -23,11 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         val preferences = getPreferences(Context.MODE_PRIVATE)
         val nivel = preferences.getInt(getString(R.string.nivel), 1)
+        var premio = preferences.getInt(getString(R.string.premio), 0)
         var contador = preferences.getInt((getString(R.string.contador)),1)
-
         val preguntaDAO = ConcursoPyR.database.PreguntasDAO()
         var opcSeleccionada = ""
         var valorAleatorio = valorRandom(1..6)
+        var premioGuardar = 0
 
         var GanadorDAO = ConcursoPyR.database2.GanadoresDAO()
 
@@ -36,8 +37,18 @@ class MainActivity : AppCompatActivity() {
         binding.tilNombreCampeon.visibility = View.GONE
         binding.tilDocumentoCampeon.visibility = View.GONE
         binding.btContinuarSalonDeGanadores.visibility = View.GONE
+        binding.tvPuntajeGanador.visibility = View.GONE
+
+        when(nivel){
+            1 -> binding.tvPremioJugador.setText("$premio xp")
+            2 -> binding.tvPremioJugador.setText("$premio xp")
+            3 -> binding.tvPremioJugador.setText("$premio xp")
+            4 -> binding.tvPremioJugador.setText("$premio xp")
+            5 -> binding.tvPremioJugador.setText("$premio xp")
+        }
 
         if(nivel!=6) {
+            binding.tvNivelJugador.setText("Nivel $nivel")
             Toast.makeText(this, "Nivel $nivel", Toast.LENGTH_LONG).show()
         }
         if(nivel==2) {
@@ -63,16 +74,50 @@ class MainActivity : AppCompatActivity() {
                             binding.ivRespuestaDos.visibility = View.GONE
                             binding.ivRespuestaTres.visibility = View.GONE
                             binding.ivRespuestaCuatro.visibility = View.GONE
+                            binding.llDatosJugador.visibility = View.GONE
+                            binding.tvPuntajeGanador.visibility = View.VISIBLE
                             binding.ivTrofeo.visibility = View.VISIBLE
                             binding.tvFelicitacionGanador.visibility = View.VISIBLE
                             binding.tilNombreCampeon.visibility = View.VISIBLE
                             binding.tilDocumentoCampeon.visibility = View.VISIBLE
                             binding.btContinuarSalonDeGanadores.visibility = View.VISIBLE
+                            binding.tvPuntajeGanador.setText("100000 xp")
                             preferences.edit().putInt(getString(R.string.nivel), 1).apply()
+                            premioGuardar = premio
+                            preferences.edit().putInt(getString(R.string.premio), 0).apply()
+
                         }
                     }
                 }
             }
+        }
+
+        binding.btRetirarseJuego.setOnClickListener {
+            if(nivel != 1){    binding.tvPreguntaUno.visibility = View.GONE
+                binding.ivPreguntaUno.visibility = View.GONE
+                binding.tvRespuestaUno.visibility = View.GONE
+                binding.tvRespuestaDos.visibility = View.GONE
+                binding.tvRespuestaTres.visibility = View.GONE
+                binding.tvRespuestaCuatro.visibility = View.GONE
+                binding.ivRespuestaUno.visibility = View.GONE
+                binding.ivRespuestaDos.visibility = View.GONE
+                binding.ivRespuestaTres.visibility = View.GONE
+                binding.ivRespuestaCuatro.visibility = View.GONE
+                binding.llDatosJugador.visibility = View.GONE
+                binding.tvPuntajeGanador.visibility = View.VISIBLE
+                binding.ivTrofeo.visibility = View.VISIBLE
+                binding.tilNombreCampeon.visibility = View.VISIBLE
+                binding.tilDocumentoCampeon.visibility = View.VISIBLE
+                binding.btContinuarSalonDeGanadores.visibility = View.VISIBLE
+                binding.tvPuntajeGanador.setText("$premio xp")
+                premioGuardar = premio
+                preferences.edit().putInt(getString(R.string.nivel), 1).apply()
+                preferences.edit().putInt(getString(R.string.premio), 0).apply()
+            }else{
+                Toast.makeText(this, "Hasta luego...", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+
         }
 
         binding.btContinuarSalonDeGanadores.setOnClickListener {
@@ -83,35 +128,27 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Ingrese un documento", Toast.LENGTH_SHORT).show()
                 }else{
                     val ganadorBuscar =GanadorDAO.buscarGanadores(binding.etDocumentoCampeon.text.toString())
-
+                    var esCampeon : Boolean = false
+                    if(premioGuardar == 100000) esCampeon = true
                     if(ganadorBuscar == null){
                         val ganador = Ganadores(
                             Types.NULL,
                             binding.etNombreCampeon.text.toString(),
                             binding.etDocumentoCampeon.text.toString(),
-                            "50000",
-                            true,
+                            premioGuardar.toString(),
+                            esCampeon,
                             contador
                         )
                         preferences.edit().putInt(getString(R.string.contador), contador + 1).apply()
                         GanadorDAO.crearGanadores(ganador)
+                        startActivity(Intent(this, SalonGanadoresActivity::class.java))
+                        finish()
                     }else{
-                        MaterialAlertDialogBuilder(this)
-                            .setTitle("El documento ya existe")
-                            .setNegativeButton("Cancelar", null)
-                            .setPositiveButton(R.string.actualizar, { dialogInterface, i ->
-                                Toast.makeText(this, "En construcción", Toast.LENGTH_SHORT).show()
-                            }).show()
+                        Toast.makeText(this, "El documento ya existe", Toast.LENGTH_SHORT).show()
                     }
-                    startActivity(Intent(this, SalonGanadoresActivity::class.java))
-                    finish()
                     }
             }
-
-
-
         }
-
         val pregunta = preguntaDAO.buscarPreguntas(valorAleatorio.toString())
         if(pregunta != null){
             binding.tvPreguntaUno.setText(pregunta.pregunta)
@@ -129,10 +166,14 @@ class MainActivity : AppCompatActivity() {
           if(opcSeleccionada == opcCorrecta){
               Toast.makeText(this, "CORRECTO", Toast.LENGTH_SHORT).show()
               preferences.edit().putInt(getString(R.string.nivel), nivel + 1).apply()
+              preferences.edit().putInt(getString(R.string.premio), Math.pow(10.0, nivel.toDouble()).toInt()).apply()
               startActivity(Intent(this, MainActivity::class.java))
               finish()
           }else{
               Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show()
+              startActivity(Intent(this, SplashActivity::class.java))
+              finish()
+
           }
       }
         binding.ivRespuestaDos.setOnClickListener {
@@ -141,10 +182,13 @@ class MainActivity : AppCompatActivity() {
             if(opcSeleccionada == opcCorrecta){
                 Toast.makeText(this, "CORRECTO", Toast.LENGTH_SHORT).show()
                 preferences.edit().putInt(getString(R.string.nivel), nivel+1).apply()
+                preferences.edit().putInt(getString(R.string.premio), Math.pow(10.0, nivel.toDouble()).toInt()).apply()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
                 Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, SplashActivity::class.java))
+                finish()
             }
         }
         binding.ivRespuestaTres.setOnClickListener {
@@ -153,10 +197,13 @@ class MainActivity : AppCompatActivity() {
             if(opcSeleccionada == opcCorrecta){
                 Toast.makeText(this, "CORRECTO", Toast.LENGTH_SHORT).show()
                 preferences.edit().putInt(getString(R.string.nivel), nivel+1).apply()
+                preferences.edit().putInt(getString(R.string.premio), Math.pow(10.0, nivel.toDouble()).toInt()).apply()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
                 Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, SplashActivity::class.java))
+                finish()
             }
         }
         binding.ivRespuestaCuatro.setOnClickListener {
@@ -165,10 +212,13 @@ class MainActivity : AppCompatActivity() {
             if(opcSeleccionada == opcCorrecta){
                 Toast.makeText(this, "CORRECTO", Toast.LENGTH_SHORT).show()
                 preferences.edit().putInt(getString(R.string.nivel), nivel+1).apply()
+                preferences.edit().putInt(getString(R.string.premio), Math.pow(10.0, nivel.toDouble()).toInt()).apply()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
                 Toast.makeText(this, "INCORRECTO", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, SplashActivity::class.java))
+                finish()
             }
         }
     }
@@ -176,5 +226,21 @@ class MainActivity : AppCompatActivity() {
         var r = Random()
         var valorRandom = r.nextInt(valores.last - valores.first) + valores.first
         return valorRandom
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Toast.makeText(this, "Hasta luego...", Toast.LENGTH_SHORT).show()
+        val preferences = getPreferences(Context.MODE_PRIVATE)
+        preferences.edit().putInt(getString(R.string.nivel), 1).apply()
+        preferences.edit().putInt(getString(R.string.premio), 0).apply()
+        finish()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val preferences = getPreferences(Context.MODE_PRIVATE)
+        preferences.edit().putInt(getString(R.string.nivel), 1).apply()
+        preferences.edit().putInt(getString(R.string.premio), 0).apply()
     }
 }

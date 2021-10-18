@@ -112,6 +112,7 @@ class SplashActivity : AppCompatActivity() {
             Toast.makeText(this, "El juego no tiene asignado un administrador", Toast.LENGTH_SHORT).show()
         }else{
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
     }
